@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero py-5">
+  <div class="container py-5">
+    <h1 class="display-5 fw-bold">Invoice</h1>
+    <p class="lead text-muted">Download and review your service invoice.</p>
+  </div>
+</section>
+<section class="py-5">
+  <div class="container">
+    <div class="card shadow-sm p-4">
+      <h4>Invoice #SVMS-1024</h4>
+      <p class="text-muted">Customer: John Doe</p>
+      <hr>
+      <p>Service: Engine Repair</p>
+      <p>Amount: $149.99</p>
+      <p>Status: Paid</p>
+      <button class="btn btn-primary">Download Invoice</button>
+    </div>
+  </div>
+</section>
+{% endblock %}

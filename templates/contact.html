@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero py-5">
+  <div class="container py-5">
+    <h1 class="display-5 fw-bold">Contact Us</h1>
+    <p class="lead text-muted">Reach out for support, service inquiries, or partnership opportunities.</p>
+  </div>
+</section>
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="card shadow-sm p-4">
+          <form>
+            <div class="row g-3">
+              <div class="col-md-6"><label class="form-label">Name</label><input class="form-control"></div>
+              <div class="col-md-6"><label class="form-label">Email</label><input class="form-control" type="email"></div>
+              <div class="col-12"><label class="form-label">Message</label><textarea class="form-control" rows="5"></textarea></div>
+              <div class="col-12"><button class="btn btn-primary">Send Message</button></div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="card shadow-sm p-4">
+          <h5>Visit Us</h5>
+          <p><i class="bi bi-geo-alt me-2"></i>123 Innovation Avenue, New York</p>
+          <p><i class="bi bi-envelope me-2"></i>support@svms.com</p>
+          <p><i class="bi bi-telephone me-2"></i>+1 234 567 890</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

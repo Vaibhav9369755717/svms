@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero py-5">
+  <div class="container py-5">
+    <h1 class="display-5 fw-bold">Customer Dashboard</h1>
+    <p class="lead text-muted">Manage bookings, payments, feedback, and history from one place.</p>
+  </div>
+</section>
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4"><div class="card p-4 shadow-sm"><h5>Active Bookings</h5><h2>{{ data.bookings|length }}</h2></div></div>
+      <div class="col-md-4"><div class="card p-4 shadow-sm"><h5>Completed Services</h5><h2>{{ data.bookings|selectattr('status','equalto','Completed')|list|length }}</h2></div></div>
+      <div class="col-md-4"><div class="card p-4 shadow-sm"><h5>Feedback Given</h5><h2>{{ data.feedback_count }}</h2></div></div>
+    </div>
+    <div class="card shadow-sm p-4 mt-4">
+      <h5>Your Bookings</h5>
+      <ul class="list-group mt-3">
+        {% for booking in data.bookings %}
+          <li class="list-group-item">{{ booking.service_name }} - {{ booking.status }} - {{ booking.booking_date }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+{% endblock %}

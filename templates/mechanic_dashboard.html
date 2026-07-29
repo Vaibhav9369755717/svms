@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero py-5">
+  <div class="container py-5">
+    <h1 class="display-5 fw-bold">Mechanic Dashboard</h1>
+    <p class="lead text-muted">Handle assigned jobs, update progress, and complete service tasks.</p>
+  </div>
+</section>
+<section class="py-5">
+  <div class="container">
+    <div class="card shadow-sm p-4">
+      <h5>Assigned Jobs</h5>
+      <ul class="list-group mt-3">
+        {% for job in jobs %}
+          <li class="list-group-item">{{ job.service_name }} - {{ job.status }} - {{ job.vehicle_number }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+{% endblock %}

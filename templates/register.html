@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero py-5">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card shadow-sm p-4">
+          <h2 class="mb-3">Register</h2>
+          <form method="post">
+            <div class="row g-3">
+              <div class="col-md-6"><label class="form-label">Full Name</label><input class="form-control" name="full_name" required></div>
+              <div class="col-md-6"><label class="form-label">Email</label><input class="form-control" name="email" type="email" required></div>
+              <div class="col-md-6"><label class="form-label">Phone</label><input class="form-control" name="phone"></div>
+              <div class="col-md-6"><label class="form-label">Password</label><input class="form-control" name="password" type="password" required></div>
+              <div class="col-12"><label class="form-label">Role</label><select class="form-select" name="role"><option value="customer">Customer</option><option value="mechanic">Mechanic</option><option value="admin">Admin</option></select></div>
+              <div class="col-12"><button class="btn btn-primary w-100">Create Account</button></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

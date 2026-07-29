@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero py-5">
+  <div class="container py-5">
+    <h1 class="display-5 fw-bold">Book Service</h1>
+    <p class="lead text-muted">Reserve your preferred service in a few simple steps.</p>
+  </div>
+</section>
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="card shadow-sm p-4">
+          <form method="post">
+            <div class="row g-3">
+              <div class="col-md-6"><label class="form-label">Vehicle Type</label><input class="form-control" name="vehicle_type" placeholder="Sedan / SUV" required></div>
+              <div class="col-md-6"><label class="form-label">Vehicle Number</label><input class="form-control" name="vehicle_number" placeholder="ABC 123" required></div>
+              <div class="col-md-6"><label class="form-label">Service</label><select class="form-select" name="service" required>
+                {% for service in services %}
+                  <option value="{{ service.name }}">{{ service.name }} - ${{ service.price }}</option>
+                {% endfor %}
+              </select></div>
+              <div class="col-md-6"><label class="form-label">Preferred Date</label><input class="form-control" name="booking_date" type="date" required></div>
+              <div class="col-12"><label class="form-label">Notes</label><textarea class="form-control" name="notes" rows="4"></textarea></div>
+              <div class="col-12"><button class="btn btn-primary">Submit Booking</button></div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card shadow-sm p-4">
+          <h5>Booking Benefits</h5>
+          <ul class="list-unstyled mt-3">
+            <li><i class="bi bi-check-circle me-2"></i>Instant confirmation</li>
+            <li><i class="bi bi-check-circle me-2"></i>Live status updates</li>
+            <li><i class="bi bi-check-circle me-2"></i>Secure payment</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

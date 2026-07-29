@@ -1,0 +1,32 @@
+:root {
+  --primary: #0d6efd;
+  --secondary: #38bdf8;
+  --dark: #111827;
+  --light: #f8fbff;
+}
+
+* { font-family: 'Poppins', sans-serif; }
+body { background: #f7f9fc; color: #1f2937; }
+.navbar { background: rgba(17,24,39,0.7); backdrop-filter: blur(12px); transition: .3s ease; }
+.navbar.scrolled { background: rgba(17,24,39,0.95); }
+.hero-section {
+  min-height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80') center/cover;
+  padding-top: 90px;
+}
+.eyebrow { color: var(--secondary); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; font-size: .85rem; }
+.section-title { font-weight: 700; color: var(--dark); }
+.glass-card, .service-card, .step-card, .testimonial-card, .category-card, .stat-card, .card {
+  border: 0;
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  background: white;
+}
+.service-card:hover, .step-card:hover, .testimonial-card:hover, .category-card:hover { transform: translateY(-6px); transition: .3s ease; }
+.icon-box {
+  width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; margin-bottom: 1rem;
+}
+.footer { background: var(--dark); color: white; }
+.footer a { color: #dbeafe; text-decoration: none; }
+.page-hero { background: linear-gradient(135deg, #eff6ff, #dbeafe); }
+.scroll-indicator { color: white; font-size: 2rem; }

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero py-5">
+  <div class="container py-5">
+    <h1 class="display-5 fw-bold">Admin Dashboard</h1>
+    <p class="lead text-muted">Oversee users, bookings, analytics, and service operations.</p>
+  </div>
+</section>
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-3"><div class="card p-4 shadow-sm"><h5>Users</h5><h2>{{ data.users }}</h2></div></div>
+      <div class="col-md-3"><div class="card p-4 shadow-sm"><h5>Bookings</h5><h2>{{ data.bookings }}</h2></div></div>
+      <div class="col-md-3"><div class="card p-4 shadow-sm"><h5>Revenue</h5><h2>${{ data.revenue }}</h2></div></div>
+      <div class="col-md-3"><div class="card p-4 shadow-sm"><h5>System</h5><h2>Online</h2></div></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

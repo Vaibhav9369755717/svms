@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero py-5">
+  <div class="container py-5">
+    <h1 class="display-5 fw-bold">FAQ</h1>
+    <p class="lead text-muted">Answers to common questions about booking and service delivery.</p>
+  </div>
+</section>
+<section class="py-5">
+  <div class="container">
+    <div class="accordion" id="faqAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">How do I book a service?</button></h2>
+        <div id="faq1" class="accordion-collapse collapse show"><div class="accordion-body">Use the Book Service page and fill in your vehicle and service details.</div></div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq2">Can I track my booking?</button></h2>
+        <div id="faq2" class="accordion-collapse collapse"><div class="accordion-body">Yes, the Track Booking page lets you monitor progress live.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

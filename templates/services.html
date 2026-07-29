@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero py-5">
+  <div class="container py-5">
+    <h1 class="display-5 fw-bold">Our Services</h1>
+    <p class="lead text-muted">Choose from the complete set of premium automotive services we offer.</p>
+  </div>
+</section>
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4">
+      {% for service in ['Oil Change','Car Wash','Brake Repair','Engine Repair','Battery Replacement','Tyre Replacement','Wheel Alignment','Insurance Claim','Emergency Service'] %}
+      <div class="col-md-4">
+        <div class="card service-card h-100">
+          <div class="card-body">
+            <h5>{{ service }}</h5>
+            <p>Professional service with certified experts and premium care.</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
