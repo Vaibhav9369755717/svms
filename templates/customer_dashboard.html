@@ -18,7 +18,15 @@
       <h5>Your Bookings</h5>
       <ul class="list-group mt-3">
         {% for booking in data.bookings %}
-          <li class="list-group-item">{{ booking.service_name }} - {{ booking.status }} - {{ booking.booking_date }}</li>
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-start gap-3">
+              <div>
+                <div class="fw-bold">Booking #{{ booking.id }}</div>
+                <div class="text-muted small">{{ booking.service_name }} • {{ booking.status }} • {{ booking.booking_date }}</div>
+              </div>
+              <span class="badge bg-primary">#{{ booking.id }}</span>
+            </div>
+          </li>
         {% endfor %}
       </ul>
     </div>

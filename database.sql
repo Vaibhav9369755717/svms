@@ -42,12 +42,12 @@ CREATE TABLE IF NOT EXISTS feedbacks (
 );
 
 INSERT INTO services (name, description, price) VALUES
-('Oil Change', 'Quick oil replacement service', 49.99),
-('Car Wash', 'Exterior and interior cleaning', 29.99),
-('Brake Repair', 'Brake pad and rotor inspection', 89.99),
-('Engine Repair', 'Advanced engine diagnostics and repair', 149.99),
-('Battery Replacement', 'Premium battery replacement', 119.99),
-('Tyre Replacement', 'New tyre installation', 79.99),
-('Wheel Alignment', 'Precision wheel alignment', 59.99),
-('Insurance Claim', 'Claim support and documentation', 39.99),
-('Emergency Service', 'Rapid roadside assistance', 99.99);
+('Oil Change', 'Quick oil replacement service', 1200.00),
+('Car Wash', 'Exterior and interior cleaning', 800.00),
+('Brake Repair', 'Brake pad and rotor inspection', 3500.00),
+('Engine Repair', 'Advanced engine diagnostics and repair', 8000.00),
+('Battery Replacement', 'Premium battery replacement', 4500.00),
+('Tyre Replacement', 'New tyre installation', 6000.00),
+('Wheel Alignment', 'Precision wheel alignment', 2200.00),
+('Insurance Claim', 'Claim support and documentation', 1500.00),
+('Emergency Service', 'Rapid roadside assistance', 3000.00);

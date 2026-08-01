@@ -66,15 +66,15 @@ def init_db():
             conn.executemany(
                 'INSERT INTO services (name, description, price) VALUES (?, ?, ?)',
                 [
-                    ('Oil Change', 'Quick oil replacement service', 49.99),
-                    ('Car Wash', 'Exterior and interior cleaning', 29.99),
-                    ('Brake Repair', 'Brake pad and rotor inspection', 89.99),
-                    ('Engine Repair', 'Advanced engine diagnostics and repair', 149.99),
-                    ('Battery Replacement', 'Premium battery replacement', 119.99),
-                    ('Tyre Replacement', 'New tyre installation', 79.99),
-                    ('Wheel Alignment', 'Precision wheel alignment', 59.99),
-                    ('Insurance Claim', 'Claim support and documentation', 39.99),
-                    ('Emergency Service', 'Rapid roadside assistance', 99.99),
+                    ('Oil Change', 'Quick oil replacement service', 1200.00),
+                    ('Car Wash', 'Exterior and interior cleaning', 800.00),
+                    ('Brake Repair', 'Brake pad and rotor inspection', 3500.00),
+                    ('Engine Repair', 'Advanced engine diagnostics and repair', 8000.00),
+                    ('Battery Replacement', 'Premium battery replacement', 4500.00),
+                    ('Tyre Replacement', 'New tyre installation', 6000.00),
+                    ('Wheel Alignment', 'Precision wheel alignment', 2200.00),
+                    ('Insurance Claim', 'Claim support and documentation', 1500.00),
+                    ('Emergency Service', 'Rapid roadside assistance', 3000.00),
                 ],
             )
         if conn.execute('SELECT COUNT(*) FROM users').fetchone()[0] == 0:
@@ -140,12 +140,13 @@ def book_service():
             if not service_row:
                 flash('Selected service is unavailable.', 'warning')
                 return redirect(url_for('book_service'))
-            conn.execute(
+            cursor = conn.execute(
                 'INSERT INTO bookings (customer_id, service_id, vehicle_type, vehicle_number, booking_date, status, notes) VALUES (?, ?, ?, ?, ?, ?, ?)',
                 (session['user_id'], service_row['id'], vehicle_type, vehicle_number, booking_date, 'Pending', notes),
             )
             conn.commit()
-            flash('Booking submitted successfully.', 'success')
+            booking_id = cursor.lastrowid
+            flash(f'Booking submitted successfully. Your booking number is #{booking_id}.', 'success')
             return redirect(url_for('track_booking'))
         finally:
             conn.close()
