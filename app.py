@@ -1,5 +1,6 @@
 import csv
 import io
+import os
 import shutil
 from datetime import datetime
 from pathlib import Path
@@ -13,8 +14,8 @@ app = Flask(__name__, static_folder='static')
 app.secret_key = 'smart-vehicle-management-system'
 
 BASE_DIR = Path(__file__).resolve().parent
-DB_PATH = BASE_DIR / 'svams.db'
-UPLOAD_DIR = BASE_DIR / 'uploads'
+DB_PATH = Path(os.getenv('DATABASE_PATH', str(BASE_DIR / 'svams.db')))
+UPLOAD_DIR = Path(os.getenv('UPLOAD_DIR', str(BASE_DIR / 'uploads')))
 ALLOWED_UPLOAD_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'pdf'}
 
 FEATURE_GROUPS = [
@@ -1175,4 +1176,4 @@ init_db()
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=int(os.getenv('PORT', '5000')))
