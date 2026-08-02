@@ -18,13 +18,15 @@
       {% if booking %}
         <div class="mt-4">
           <div class="progress" style="height: 12px">
-            <div class="progress-bar" style="width: 70%"></div>
+            <div class="progress-bar" style="width: {% if booking.status == 'Completed' %}100{% elif booking.status == 'Accepted' %}70{% elif booking.status == 'Rescheduled' %}50{% elif booking.status == 'Cancelled' %}100{% else %}30{% endif %}%"></div>
           </div>
           <div class="alert alert-info mt-3 mb-3">
             <strong>Booking Number:</strong> #{{ booking.id }}
           </div>
           <p class="mb-0">Current Status: {{ booking.status }}</p>
           <p class="mb-0">Service: {{ booking.service_name }} | Vehicle: {{ booking.vehicle_number }}</p>
+          <p class="mb-0">Payment: {{ booking.payment_status or 'Unpaid' }} | Estimated Time: {{ booking.estimated_time or 'Not set' }}</p>
+          <p class="mb-0">Rescheduled Date: {{ booking.rescheduled_date or 'N/A' }} | Cancellation Reason: {{ booking.cancellation_reason or 'N/A' }}</p>
         </div>
       {% endif %}
     </div>

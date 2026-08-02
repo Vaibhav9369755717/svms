@@ -3,17 +3,120 @@
 {% block content %}
 <section class="page-hero py-5">
   <div class="container py-5">
-    <h1 class="display-5 fw-bold">Admin Dashboard</h1>
-    <p class="lead text-muted">Oversee users, bookings, analytics, and service operations.</p>
+    <div class="row align-items-center gy-3">
+      <div class="col-lg-8">
+        <p class="eyebrow">Admin Dashboard</p>
+        <h1 class="display-5 fw-bold">Oversee customers, mechanics, bookings, offers, reports, and backups.</h1>
+        <p class="lead text-muted">The admin view now exposes data exports, role management, revenue snapshots, and quick system actions.</p>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <a class="btn btn-primary btn-lg me-2" href="{{ url_for('features') }}">Feature Hub</a>
+        <a class="btn btn-outline-primary btn-lg" href="{{ url_for('backup_database') }}">Backup DB</a>
+      </div>
+    </div>
   </div>
 </section>
-<section class="py-5">
+
+<section class="py-4">
   <div class="container">
     <div class="row g-4">
-      <div class="col-md-3"><div class="card p-4 shadow-sm"><h5>Users</h5><h2>{{ data.users }}</h2></div></div>
-      <div class="col-md-3"><div class="card p-4 shadow-sm"><h5>Bookings</h5><h2>{{ data.bookings }}</h2></div></div>
-      <div class="col-md-3"><div class="card p-4 shadow-sm"><h5>Revenue</h5><h2>₹{{ data.revenue }}</h2></div></div>
-      <div class="col-md-3"><div class="card p-4 shadow-sm"><h5>System</h5><h2>Online</h2></div></div>
+      <div class="col-md-2"><div class="card p-4 shadow-sm h-100"><h6 class="text-muted">Users</h6><h2>{{ data.users }}</h2></div></div>
+      <div class="col-md-2"><div class="card p-4 shadow-sm h-100"><h6 class="text-muted">Mechanics</h6><h2>{{ data.mechanics }}</h2></div></div>
+      <div class="col-md-2"><div class="card p-4 shadow-sm h-100"><h6 class="text-muted">Bookings</h6><h2>{{ data.bookings }}</h2></div></div>
+      <div class="col-md-3"><div class="card p-4 shadow-sm h-100"><h6 class="text-muted">Revenue</h6><h2>₹{{ '%.2f'|format(data.revenue) }}</h2></div></div>
+      <div class="col-md-3"><div class="card p-4 shadow-sm h-100"><h6 class="text-muted">Active Offers</h6><h2>{{ data.offers }}</h2></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="py-4 bg-light">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="card shadow-sm p-4 h-100">
+          <h5>Exports & Backup</h5>
+          <div class="d-grid gap-2">
+            <a class="btn btn-outline-primary" href="{{ url_for('export_csv', entity='customers') }}">Export Customers Excel</a>
+            <a class="btn btn-outline-primary" href="{{ url_for('export_csv', entity='bookings') }}">Export Bookings Excel</a>
+            <a class="btn btn-outline-primary" href="{{ url_for('export_csv', entity='mechanics') }}">Export Mechanics Excel</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('backup_database') }}">Backup Database</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card shadow-sm p-4 h-100">
+          <h5>Service & Offer Controls</h5>
+          <div class="vstack gap-2">
+            {% for service in data.services[:5] %}
+              <div class="border rounded-3 p-2 small d-flex justify-content-between">
+                <span>{{ service.name }}</span>
+                <span>₹{{ '%.2f'|format(service.price) }}</span>
+              </div>
+            {% endfor %}
+            <div class="mt-2 small text-muted">Offers are seeded in the database and can be extended through the offers table.</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card shadow-sm p-4 h-100">
+          <h5>Notifications</h5>
+          <p class="text-muted">System notifications are now stored in the database and can be surfaced in future admin views.</p>
+          <a class="btn btn-outline-primary" href="{{ url_for('features') }}">Review Feature Hub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-4">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="card shadow-sm p-4 h-100">
+          <h5 class="mb-3">Recent Bookings</h5>
+          <div class="vstack gap-3">
+            {% for booking in data.recent_bookings %}
+              <div class="border rounded-4 p-3">
+                <div class="d-flex justify-content-between align-items-start gap-3">
+                  <div>
+                    <div class="fw-bold">{{ booking.customer_name }} - {{ booking.service_name }}</div>
+                    <div class="text-muted small">Booking #{{ booking.id }} • {{ booking.vehicle_number or 'No vehicle' }} • {{ booking.booking_date or 'No date' }}</div>
+                    <div class="text-muted small">Status: {{ booking.status }} | Payment: {{ booking.payment_status or 'Unpaid' }}</div>
+                  </div>
+                  <span class="badge bg-primary">{{ booking.status }}</span>
+                </div>
+              </div>
+            {% else %}
+              <div class="alert alert-info mb-0">No bookings yet.</div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="card shadow-sm p-4 h-100">
+          <h5 class="mb-3">Role Management</h5>
+          <div class="vstack gap-3">
+            {% for user in data.users_list[:8] %}
+              <div class="border rounded-4 p-3">
+                <div class="d-flex justify-content-between align-items-center gap-3">
+                  <div>
+                    <div class="fw-bold">{{ user.full_name }}</div>
+                    <div class="text-muted small">{{ user.email }} • {{ user.role }}</div>
+                  </div>
+                  <form method="post" action="{{ url_for('change_role', user_id=user.id) }}" class="d-flex gap-2 align-items-center">
+                    <select class="form-select form-select-sm" name="role">
+                      <option value="customer" {% if user.role == 'customer' %}selected{% endif %}>Customer</option>
+                      <option value="mechanic" {% if user.role == 'mechanic' %}selected{% endif %}>Mechanic</option>
+                      <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+                    </select>
+                    <button class="btn btn-sm btn-outline-primary">Save</button>
+                  </form>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

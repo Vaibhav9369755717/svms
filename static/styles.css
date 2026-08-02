@@ -30,3 +30,14 @@ body { background: #f7f9fc; color: #1f2937; }
 .footer a { color: #dbeafe; text-decoration: none; }
 .page-hero { background: linear-gradient(135deg, #eff6ff, #dbeafe); }
 .scroll-indicator { color: white; font-size: 2rem; }
+.feature-panel {
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  border: 1px solid rgba(13, 110, 253, 0.08);
+}
+.feature-badge {
+  padding: 0.55rem 0.8rem;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+}
+.booking-card {
+  background: linear-gradient(180deg, #ffffff, #f7fbff);
+}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero py-5">
+  <div class="container py-5">
+    <div class="row align-items-center gy-4">
+      <div class="col-lg-8">
+        <p class="eyebrow">Feature Hub</p>
+        <h1 class="display-5 fw-bold">Everything the platform can now handle</h1>
+        <p class="lead text-muted">Customer, admin, and mechanic workflows are grouped here so the new capabilities are easy to find and use.</p>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <a class="btn btn-primary btn-lg me-2" href="{{ url_for('customer_dashboard') }}">Customer Dashboard</a>
+        <a class="btn btn-outline-primary btn-lg" href="{{ url_for('admin_dashboard') }}">Admin Tools</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4">
+      {% for group in feature_groups %}
+      <div class="col-lg-4">
+        <div class="card h-100 feature-panel p-4">
+          <p class="eyebrow mb-2">{{ group.title }}</p>
+          <h3 class="h4 mb-3">{{ group.title }}</h3>
+          <div class="d-flex flex-wrap gap-2">
+            {% for feature in group.features %}
+            <span class="badge rounded-pill text-bg-light feature-badge">{{ feature }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 p-4">
+          <h5>Supported now</h5>
+          <p class="text-muted mb-0">Booking, cancellation, rescheduling, reminders, wallet updates, support requests, invoice PDF download, exports, backups, and mechanic job updates.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 p-4">
+          <h5>Customer workflows</h5>
+          <p class="text-muted mb-0">Manage multiple vehicles, uploads, workshops, fuel estimates, lead requests, coupons, and loyalty points from the customer dashboard.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 p-4">
+          <h5>Operations</h5>
+          <p class="text-muted mb-0">Admins can export data, change roles, and review live summaries while mechanics can accept, reject, and complete jobs with notes and photos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

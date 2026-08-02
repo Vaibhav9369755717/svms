@@ -3,21 +3,37 @@
 {% block content %}
 <section class="page-hero py-5">
   <div class="container py-5">
-    <h1 class="display-5 fw-bold">Invoice</h1>
-    <p class="lead text-muted">Download and review your service invoice.</p>
+    <p class="eyebrow">Invoice</p>
+    <h1 class="display-5 fw-bold">Download and review your latest service invoice.</h1>
+    <p class="lead text-muted">Invoice data is generated from your latest booking and can be exported as a PDF.</p>
   </div>
 </section>
+
 <section class="py-5">
   <div class="container">
-    <div class="card shadow-sm p-4">
-      <h4>Invoice #SVMS-1024</h4>
-      <p class="text-muted">Customer: John Doe</p>
-      <hr>
-      <p>Service: Engine Repair</p>
-      <p>Amount: ₹149.99</p>
-      <p>Status: Paid</p>
-      <button class="btn btn-primary">Download Invoice</button>
-    </div>
+    {% if invoice %}
+      <div class="card shadow-sm p-4">
+        <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
+          <div>
+            <h4 class="mb-1">Invoice #{{ invoice.invoice_number }}</h4>
+            <p class="text-muted mb-0">Customer: {{ invoice.full_name }}</p>
+            <p class="text-muted mb-0">Email: {{ invoice.email }}</p>
+          </div>
+          <a class="btn btn-primary" href="{{ url_for('download_invoice_pdf', booking_id=invoice.id) }}">Download PDF</a>
+        </div>
+        <hr>
+        <div class="row g-3">
+          <div class="col-md-6"><strong>Service</strong><div>{{ invoice.service_name }}</div></div>
+          <div class="col-md-6"><strong>Amount</strong><div>₹{{ '%.2f'|format(invoice.price) }}</div></div>
+          <div class="col-md-6"><strong>Booking Date</strong><div>{{ invoice.booking_date or '-' }}</div></div>
+          <div class="col-md-6"><strong>Status</strong><div>{{ invoice.status }}</div></div>
+          <div class="col-md-6"><strong>Payment Status</strong><div>{{ invoice.payment_status or 'Unpaid' }}</div></div>
+          <div class="col-md-6"><strong>Booking ID</strong><div>#{{ invoice.id }}</div></div>
+        </div>
+      </div>
+    {% else %}
+      <div class="alert alert-info mb-0">No booking found yet. Book a service to generate an invoice.</div>
+    {% endif %}
   </div>
 </section>
 {% endblock %}
