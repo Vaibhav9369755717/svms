@@ -430,7 +430,17 @@ def log_job_action(conn, booking_id, action, details=''):
 
 @app.route('/features')
 def features():
-    return render_template('features.html', feature_groups=FEATURE_GROUPS)
+    role = session.get('user_role')
+    if role not in {'customer', 'admin', 'mechanic'}:
+        flash('Please login to view your features.', 'warning')
+        return redirect(url_for('login'))
+    role_titles = {
+        'customer': 'Customer Side',
+        'admin': 'Admin Side',
+        'mechanic': 'Mechanic Side',
+    }
+    feature_groups = [group for group in FEATURE_GROUPS if group['title'] == role_titles[role]]
+    return render_template('features.html', feature_groups=feature_groups, user_role=role)
 
 
 @app.route('/feature-hub')
@@ -926,8 +936,8 @@ def track_booking():
 
 @app.route('/customer-dashboard')
 def customer_dashboard():
-    if not session.get('user_id'):
-        flash('Please login to view your dashboard.', 'warning')
+    if session.get('user_role') != 'customer':
+        flash('Only customers can view this page.', 'warning')
         return redirect(url_for('login'))
     conn = get_db()
     data = {

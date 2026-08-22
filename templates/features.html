@@ -5,13 +5,18 @@
   <div class="container py-5">
     <div class="row align-items-center gy-4">
       <div class="col-lg-8">
-        <p class="eyebrow">Feature Hub</p>
-        <h1 class="display-5 fw-bold">Everything the platform can now handle</h1>
-        <p class="lead text-muted">Customer, admin, and mechanic workflows are grouped here so the new capabilities are easy to find and use.</p>
+        <p class="eyebrow">{{ user_role|capitalize }} Features</p>
+        <h1 class="display-5 fw-bold">Features available for your account</h1>
+        <p class="lead text-muted">This page shows only the tools and workflows available to your signed-in role.</p>
       </div>
       <div class="col-lg-4 text-lg-end">
-        <a class="btn btn-primary btn-lg me-2" href="{{ url_for('customer_dashboard') }}">Customer Dashboard</a>
-        <a class="btn btn-outline-primary btn-lg" href="{{ url_for('admin_dashboard') }}">Admin Tools</a>
+        {% if user_role == 'customer' %}
+          <a class="btn btn-primary btn-lg" href="{{ url_for('customer_dashboard') }}">Customer Dashboard</a>
+        {% elif user_role == 'admin' %}
+          <a class="btn btn-primary btn-lg" href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+        {% else %}
+          <a class="btn btn-primary btn-lg" href="{{ url_for('mechanic_dashboard') }}">Mechanic Dashboard</a>
+        {% endif %}
       </div>
     </div>
   </div>
