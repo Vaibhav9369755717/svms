@@ -10,12 +10,13 @@
 <section class="py-5">
   <div class="container">
     <div class="row g-4">
-      {% for service in ['Oil Change','Car Wash','Brake Repair','Engine Repair','Battery Replacement','Tyre Replacement','Wheel Alignment','Insurance Claim','Emergency Service'] %}
+      {% for service in services %}
       <div class="col-md-4">
         <div class="card service-card h-100">
           <div class="card-body">
-            <h5>{{ service }}</h5>
-            <p>Professional service with certified experts and premium care.</p>
+            <h5>{{ service.name }}</h5>
+            <p>{{ service.description or 'Professional service with certified experts and premium care.' }}</p>
+            <div class="fw-bold text-primary">₹{{ "%.2f"|format(service.price) }}</div>
           </div>
         </div>
       </div>

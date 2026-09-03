@@ -12,11 +12,11 @@
     <div class="card shadow-sm p-4">
       <table class="table table-striped">
         <thead>
-          <tr><th>#</th><th>Service</th><th>Date</th><th>Status</th></tr>
+          <tr><th>Booking #</th><th>Service</th><th>Date</th><th>Status</th></tr>
         </thead>
         <tbody>
           {% for booking in bookings %}
-            <tr><td>{{ booking.id }}</td><td>{{ booking.service_name }}</td><td>{{ booking.booking_date }}</td><td>{{ booking.status }}</td></tr>
+            <tr><td>#{{ booking.id }}</td><td>{{ booking.service_name }}</td><td>{{ booking.booking_date }}</td><td>{{ booking.status }}</td></tr>
           {% endfor %}
         </tbody>
       </table>

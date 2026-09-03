@@ -18,10 +18,11 @@
               <div class="col-md-6"><label class="form-label">Vehicle Number</label><input class="form-control" name="vehicle_number" placeholder="ABC 123" required></div>
               <div class="col-md-6"><label class="form-label">Service</label><select class="form-select" name="service" required>
                 {% for service in services %}
-                  <option value="{{ service.name }}">{{ service.name }} - ${{ service.price }}</option>
+                  <option value="{{ service.name }}">{{ service.name }} - ₹{{ "%.2f"|format(service.price) }}</option>
                 {% endfor %}
               </select></div>
               <div class="col-md-6"><label class="form-label">Preferred Date</label><input class="form-control" name="booking_date" type="date" required></div>
+              <div class="col-md-6"><label class="form-label">Payment Method</label><select class="form-select" name="payment_method"><option value="Wallet">Wallet</option><option value="UPI">UPI</option><option value="Card">Card</option><option value="Cash">Cash</option></select></div>
               <div class="col-12"><label class="form-label">Notes</label><textarea class="form-control" name="notes" rows="4"></textarea></div>
               <div class="col-12"><button class="btn btn-primary">Submit Booking</button></div>
             </div>
