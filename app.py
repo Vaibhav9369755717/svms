@@ -865,10 +865,10 @@ def services():
 
 @app.route('/book-service', methods=['GET', 'POST'])
 def book_service():
+    if not session.get('user_id'):
+        flash('Please login first to book a service.', 'warning')
+        return redirect(url_for('login', next=url_for('book_service')))
     if request.method == 'POST':
-        if not session.get('user_id'):
-            flash('Please login first to book a service.', 'warning')
-            return redirect(url_for('login'))
         service_name = request.form.get('service')
         vehicle_type = request.form.get('vehicle_type', '')
         vehicle_number = request.form.get('vehicle_number', '')
@@ -1022,6 +1022,7 @@ def mechanic_dashboard():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    next_url = request.args.get('next') or request.form.get('next')
     if request.method == 'POST':
         email = request.form.get('email', '').strip()
         password = request.form.get('password', '')
@@ -1037,11 +1038,13 @@ def login():
                     return redirect(url_for('admin_dashboard'))
                 if user['role'] == 'mechanic':
                     return redirect(url_for('mechanic_dashboard'))
+                if next_url and next_url.startswith('/') and not next_url.startswith('//'):
+                    return redirect(next_url)
                 return redirect(url_for('customer_dashboard'))
             flash('Invalid email or password.', 'danger')
         finally:
             conn.close()
-    return render_template('login.html')
+    return render_template('login.html', next_url=next_url)
 
 
 @app.route('/register', methods=['GET', 'POST'])
