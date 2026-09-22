@@ -21,8 +21,8 @@
   <div class="container">
     <div class="row g-4">
       <div class="col-md-3"><div class="card p-4 shadow-sm h-100"><h6 class="text-muted">Bookings</h6><h2 class="mb-0">{{ data.bookings|length }}</h2></div></div>
-      <div class="col-md-3"><div class="card p-4 shadow-sm h-100"><h6 class="text-muted">Wallet Balance</h6><h2 class="mb-0">₹{{ '%.2f'|format(data.wallet.balance or 0) }}</h2></div></div>
-      <div class="col-md-3"><div class="card p-4 shadow-sm h-100"><h6 class="text-muted">Loyalty Points</h6><h2 class="mb-0">{{ data.wallet.loyalty_points or 0 }}</h2></div></div>
+      <!-- <div class="col-md-3"><div class="card p-4 shadow-sm h-100"><h6 class="text-muted">Wallet Balance</h6><h2 class="mb-0">₹{{ '%.2f'|format(data.wallet.balance or 0) }}</h2></div></div>
+      <div class="col-md-3"><div class="card p-4 shadow-sm h-100"><h6 class="text-muted">Loyalty Points</h6><h2 class="mb-0">{{ data.wallet.loyalty_points or 0 }}</h2></div></div> -->
       <div class="col-md-3"><div class="card p-4 shadow-sm h-100"><h6 class="text-muted">Feedback</h6><h2 class="mb-0">{{ data.feedback_count }}</h2></div></div>
     </div>
   </div>
@@ -32,7 +32,7 @@
   <div class="container">
     <div class="row g-4">
       <div class="col-lg-8">
-        <div class="card shadow-sm p-4 h-100">
+        <!-- <div class="card shadow-sm p-4 h-100"> -->
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="mb-0">Your Bookings</h5>
             <a href="{{ url_for('track_booking') }}" class="small text-decoration-none">Track a booking</a>
@@ -68,8 +68,9 @@
       </div>
 
       <div class="col-lg-4">
-        <div class="card shadow-sm p-4 h-100">
-          <h5>Wallet & Coupons</h5>
+       
+          
+            <!-- </div><h5>Wallet &  <div class="card shadow-sm p-4 h-100">Coupons</h5>
           <p class="text-muted">Referral code: <strong>{{ data.wallet.referral_code or 'N/A' }}</strong></p>
           <form method="post" action="{{ url_for('update_wallet') }}" class="vstack gap-3">
             <div>
@@ -79,7 +80,6 @@
             <div>
               <label class="form-label">Coupon Code</label>
               <input class="form-control" name="coupon_code" placeholder="SAVE10">
-            </div>
             <button class="btn btn-primary">Update Wallet</button>
           </form>
           <hr>
@@ -89,7 +89,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <section class="py-4 bg-light">
   <div class="container">
@@ -121,7 +121,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
+      <!-- <div class="col-lg-4">
         <div class="card shadow-sm p-4 h-100">
           <h5>Support, Live Chat, SOS</h5>
           <form method="post" action="{{ url_for('create_support_request') }}" class="vstack gap-3">
@@ -129,7 +129,7 @@
               <option>Live Chat</option>
               <option>Roadside Assistance</option>
               <option>SOS</option>
-            </select>
+            </select> -->
             <input class="form-control" name="subject" placeholder="Subject">
             <textarea class="form-control" name="message" rows="4" placeholder="Describe your issue"></textarea>
             <button class="btn btn-outline-primary">Send Request</button>
